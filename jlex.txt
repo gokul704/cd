@@ -1,0 +1,27 @@
+DIGIT [0-9]
+ID [a-z][a-z0-9]*
+%%
+char|int|float|double|main|void|real|printf|for|while|do
+printf("keyword=%s\n",yytext);
+{DIGIT} printf("interger %s",yytext);
+{ID}+ printf("identifier %s",yytext);
+{DIGIT}+"."{DIGIT}* printf("floating point number:%s\n",yytext);
+[=|!=|>=|<=|<|>|+|-|*|/] printf("operator %s",yytext);
+[(] printf("openparenthesis %s",yytext);
+[)] printf("closeparenthesis %s",yytext);
+[{] printf("open bbrace is %s",yytext);
+[}] printf("close braceis %s",yytext);
+[;] printf("eos %s",yytext);
+[\t\n]+ /*eat up whitesapaces */
+19
+["{"|^}\n]*"}"] /*eat up comments */
+["|,|.] printf("punctaation :%s ",yytext);
+%%
+main()
+{
+yylex();
+}
+int yywrap()
+{
+return 1;
+}
