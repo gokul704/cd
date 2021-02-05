@@ -30,7 +30,6 @@ Else
 printf("\n It is not a comment");
 }
 Else
-14
 printf("\n It is not a comment");
 getch();
 }
